@@ -1,19 +1,18 @@
 <?php
+
 /**
  * 
  */
-class Auth
-{
-    
-    public static function handleLogin()
-    {
+class Auth {
+
+    public static function handleLogin() {
         @session_start();
         $logged = $_SESSION['loggedIn'];
         if ($logged == false) {
             session_destroy();
-            header('location: ../login');
+            header("location:".URL."login");
             exit;
         }
     }
-    
+
 }

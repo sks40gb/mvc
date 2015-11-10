@@ -1,0 +1,46 @@
+[1]  config.php  --> Change in constant value in config.php for DB and URL
+[2] .htaccess   --> Make sure 'RewriteBase' is defined as per server path.
+[3]  sql_dump.txt  --> change the DB name in the query 'Use MVC;'
+
+
+
+config.php
+------------------------------------------------------------------------------------------------------------------------
+<?php
+
+// Always provide a TRAILING SLASH (/) AFTER A PATH
+define('URL', 'http://sunilkumarsingh.in/mvc/');
+define('LIBS', 'libs/');
+
+define('DB_TYPE', 'mysql');
+define('DB_HOST', 'mysql1.freehosting.com');
+define('DB_NAME', 'sunilkum_mvc');
+define('DB_USER', 'sunilkum_admin');
+define('DB_PASS', 'admin');
+
+// The sitewide hashkey, do not change this because its used for passwords!
+// This is for other hash keys... Not sure yet
+define('HASH_GENERAL_KEY', 'MixitUp200');
+
+// This is for database passwords only
+define('HASH_PASSWORD_KEY', 'catsFLYhigh2000miles');
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+.htaccess
+------------------------------------------------------------------------------------------------------------------------
+php_flag display_errors on
+php_value error_reporting 9999
+
+RewriteEngine On
+RewriteBase /admin/mvc/
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+------------------------------------------------------------------------------------------------------------------------

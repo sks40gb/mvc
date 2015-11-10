@@ -3,15 +3,15 @@
     <head>
         <title><?= (isset($this->title)) ? $this->title : 'MVC'; ?></title>
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css" />    
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/sunny/jquery-ui.css" />
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo URL; ?>public/js/custom.js"></script>
+        <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.js"></script>
         <?php
+        #Set the js files dynamically from the js folder.
         if (isset($this->js_files)) {
             foreach ($this->js_files as $js) {
                 echo '<script type="text/javascript" src="' . URL . $js . '"></script>';
-            }        }
+             }
+          }
         ?>
     </head>
     <body>

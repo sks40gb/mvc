@@ -12,8 +12,8 @@ class Database extends PDO
     
     /**
      * select
-     * @param string $sql An SQL string
-     * @param array $array Paramters to bind
+     * @param string $sql An SQL string -       Ex:  "SELECT role FROM user WHERE userid = :userid"
+     * @param array $array Paramters to bind    Ex:   array(':userid' => $userid)
      * @param constant $fetchMode A PDO Fetch mode
      * @return mixed
      */
@@ -59,7 +59,7 @@ class Database extends PDO
     {
         ksort($data);
         
-        $fieldDetails = NULL;
+        $fieldDetails = null;
         foreach($data as $key=> $value) {
             $fieldDetails .= "`$key`=:$key,";
         }

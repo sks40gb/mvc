@@ -7,35 +7,27 @@ class Dashboard extends Controller {
         Auth::handleLogin();
         $this->view->js = array('dashboard/js/default.js');
     }
-    
-    function index() 
-    {    
+
+    function index() {
         $this->view->title = 'Dashboard';
-        
-        $this->view->render('header');
         $this->view->render('dashboard/index');
-        $this->view->render('footer');
     }
-    
-    function logout()
-    {
+
+    function logout() {
         Session::destroy();
-        header('location: ' . URL .  'login');
+        header('location: ' . URL . 'login');
         exit;
     }
-    
-    function xhrInsert()
-    {
+
+    function xhrInsert() {
         $this->model->xhrInsert();
     }
-    
-    function xhrGetListings()
-    {
+
+    function xhrGetListings() {
         $this->model->xhrGetListings();
     }
-    
-    function xhrDeleteListing()
-    {
+
+    function xhrDeleteListing() {
         $this->model->xhrDeleteListing();
     }
 

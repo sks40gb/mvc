@@ -10,7 +10,7 @@ class Auth {
         $logged = $_SESSION['loggedIn'];
         if ($logged == false) {
             session_destroy();
-            header("location:".URL."login");
+            header("location:" . URL . "login");
             exit;
         }
     }

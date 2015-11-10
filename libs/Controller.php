@@ -10,7 +10,7 @@ class Controller {
     /**
      * 
      * @param string $name Name of the model
-     * @param string $path Location of the models
+     * @param string $modelPath Location of the models
      */
     public function loadModel($name, $modelPath = 'models/') {
 

@@ -3,6 +3,7 @@
 // Always provide a TRAILING SLASH (/) AFTER A PATH
 define('URL', 'http://localhost/mvc/');
 define('LIBS', 'libs/');
+define('VIEWS', 'views/');
 
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');

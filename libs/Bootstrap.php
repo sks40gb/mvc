@@ -26,7 +26,7 @@ class Bootstrap {
             $this->_loadExistingController();
             $this->_callControllerMethod();
         }
-    }
+                }
 
     /**
      * (Optional) Set a custom path to controllers

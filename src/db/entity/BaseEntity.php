@@ -5,6 +5,7 @@
  *
  * @author sunsingh
  */
+
 namespace SKS\DB\Entity;
 
 class BaseEntity {
@@ -16,8 +17,20 @@ class BaseEntity {
         
     }
 
-    public function persist() {
-        $this->getManager()->persist($this);
+    public function persist($flush = FALSE) {
+        $entity = $this->getManager()->persist($this);
+        if ($flush) {
+            $this->flush();
+        }
+        return $entity;
+    }
+
+    public function update($flush = FALSE) {
+        $entity = $this->getManager()->merge($this);
+        if ($flush) {
+            $this->flush();
+        }
+        return $entity;
     }
 
     public function flush() {
@@ -25,25 +38,20 @@ class BaseEntity {
     }
 
     public function detach() {
-        return $this->getManager()->detach($this);        
+        return $this->getManager()->detach($this);
     }
-    
+
     public function remove() {
-        return $this->getManager()->remove($this);        
-    }
-     
-    public function merge() {
-        return $this->getManager()->merge($this);        
+        return $this->getManager()->remove($this);
     }
     
-    public function update() {
+    public function merge() {
         return $this->getManager()->merge($this);
-        #return $this->getManager()->flush($this);        
     }
-        
-    public function findById($id=NULL) {
-        if($id == NULL){
-            $id = $this.getId();
+
+    public function findById($id = NULL) {
+        if ($id == NULL) {
+            $id = $this . getId();
         }
         $table = get_class($this);
         $query = $this->getManager()->createQuery("SELECT t FROM $table t WHERE t.id = $id");

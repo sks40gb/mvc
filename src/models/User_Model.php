@@ -31,21 +31,21 @@ class User_Model extends Model {
     public function editSave($data) {
         $password = Hash::create('sha256', $data['password'], HASH_PASSWORD_KEY);
         $user = new User();        
-        $user->findById($data['id']);
-        $user->setId($data['id']);
-        $user->setLogin($data['login']);       
-        $user->setPassword($password);      
-        $user->setRole($data['role']);
-        $user->update(true);
+        $existingUser = $user->findById($data['id']);
+        $existingUser->setId($data['id']);
+        $existingUser->setLogin($data['login']);       
+        $existingUser->setPassword($password);      
+        $existingUser->setRole($data['role']);
+        $existingUser->update(true);
     }
 
-    public function delete($userid) {
-        $result = $this->db->select('SELECT role FROM user WHERE userid = :userid', array(':userid' => $userid));
-
-        if ($result[0]['role'] == 'owner')
+    public function delete($userid) {        
+        $user = new User();
+        $user = $user->findById($userid);        
+        print_r($user);
+        if ($user->getRole() == 'owner')
             return false;
-
-        $this->db->delete('user', "userid = '$userid'");
+       $user->remove();
     }
 
 }

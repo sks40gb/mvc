@@ -1,9 +1,9 @@
 <?php
-require 'src/db/entity/Entity.php';
+require_once 'BASEEntity.php';
 /**
  * @Entity @Table(name="products")
  * */
-class Product extends Entity {
+class Product extends BASEEntity {
     
     /** @Id @Column(type="integer") @GeneratedValue * */
     protected $id;

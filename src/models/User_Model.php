@@ -15,12 +15,20 @@ class User_Model extends Model {
     }
 
     public function create($data) {
-        $this->db->insert('user', array(
+       /*$this->db->insert('user', array(
             'login' => $data['login'],
             'password' => Hash::create('sha256', $data['password'], HASH_PASSWORD_KEY),
             'role' => $data['role']
-        ));
+        ));*/       
+        $password = Hash::create('sha256', $data['password'], HASH_PASSWORD_KEY);
+        $user = new UserEntity();       
+        $user->setLogin($data['login']);       
+        $user->setPassword($password);      
+        $user->setRole($data['role']);     
+        $user->persist();
+        $user->flush();      
     }
+    
 
     public function editSave($data) {
         $postData = array(

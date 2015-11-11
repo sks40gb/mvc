@@ -9,7 +9,7 @@ use Doctrine\ORM\Tools\Setup;
  * @author sunsingh
  */
 
-class Entity {
+class BASEEntity {
 
     // obtaining the entity manager
     protected $entityManager;

@@ -1,15 +1,15 @@
 <?php
-require 'src/db/entity/Entity.php';
+require_once 'BASEEntity.php';
 /**
  * @Entity @Table(name="user")
  * */
-class User extends Entity {
+class UserEntity extends BASEEntity {
     
     /** @Id @Column(type="integer") @GeneratedValue * */
     protected $id;
 
     /** @Column(type="string") * */
-    protected $userid;
+    protected $password;
     
     /** @Column(type="string") * */
     protected $login;
@@ -19,10 +19,6 @@ class User extends Entity {
 
     function getId() {
         return $this->id;
-    }
-
-    function getUserid() {
-        return $this->userid;
     }
 
     function getLogin() {
@@ -37,10 +33,6 @@ class User extends Entity {
         $this->id = $id;
     }
 
-    function setUserid($userid) {
-        $this->userid = $userid;
-    }
-
     function setLogin($login) {
         $this->login = $login;
     }
@@ -49,4 +41,13 @@ class User extends Entity {
         $this->role = $role;
     }
     
+    function getPassword() {
+        return $this->password;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
+    }
+
+
 }

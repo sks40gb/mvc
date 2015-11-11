@@ -9,7 +9,7 @@ if (isset($_REQUEST['run'])) {
         
         $form = new Form();
 
-        $form    ->post('name')
+        $form   ->post('name')
                 ->val('minlength', 2)
 
                 ->post('age')

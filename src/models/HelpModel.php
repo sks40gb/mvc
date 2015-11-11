@@ -1,6 +1,6 @@
 <?php
 
-class Help_Model extends Model {
+class HelpModel extends Model {
 
     public function __construct() {
         parent::__construct();

@@ -1,6 +1,6 @@
 <?php
 
-class Note_Model extends Model {
+class NoteModel extends Model {
 
     public function __construct() {
         parent::__construct();

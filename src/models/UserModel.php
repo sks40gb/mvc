@@ -1,7 +1,7 @@
 <?php
 
 use SKS\DB\Entity\User;
-class User_Model extends Model {
+class UserModel extends Model {
 
     public function __construct() {
         parent::__construct();

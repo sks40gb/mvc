@@ -4,8 +4,8 @@ class Bootstrap {
 
     private $_url = null;
     private $_controller = null;
-    private $_controllerPath = CONTROLLER_PATH; 
-    private $_modelPath = MODEL_PATH; 
+    private $_controllerPath = CONTROLLER_PATH;
+    private $_modelPath = MODEL_PATH;
     private $_errorFile = 'error.php';
     private $_defaultFile = 'index.php';
 
@@ -26,7 +26,7 @@ class Bootstrap {
             $this->_loadExistingController();
             $this->_callControllerMethod();
         }
-                }
+    }
 
     /**
      * (Optional) Set a custom path to controllers

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of Model
  *
@@ -15,23 +16,50 @@ class BaseEntity {
         
     }
 
-    public function persist() {     
+    public function persist() {
         $this->getManager()->persist($this);
     }
 
-    public function flush() {     
+    public function flush() {
         $this->getManager()->flush();
     }
- 
-    public function findAll(){
-       $table = get_class($this);      
-       $query = $this->getManager()->createQuery("SELECT t FROM $table t");
-       $entities = $query->getResult();      
-       return $entities;
+
+    public function detach() {
+        return $this->getManager()->detach($this);        
+    }
+    
+    public function remove() {
+        return $this->getManager()->remove($this);        
+    }
+     
+    public function merge() {
+        return $this->getManager()->merge($this);        
+    }
+    
+    public function update() {
+        return $this->getManager()->merge($this);
+        #return $this->getManager()->flush($this);        
+    }
+        
+    public function findById($id=NULL) {
+        if($id == NULL){
+            $id = $this.getId();
+        }
+        $table = get_class($this);
+        $query = $this->getManager()->createQuery("SELECT t FROM $table t WHERE t.id = $id");
+        $entities = $query->getResult();
+        return $entities[0];
+    }
+
+    public function findAll() {
+        $table = get_class($this);
+        $query = $this->getManager()->createQuery("SELECT t FROM $table t");
+        $entities = $query->getResult();
+        return $entities;
     }
 
     public function getManager() {
-        if (!isset($this->entityManager)) {            
+        if (!isset($this->entityManager)) {
             $config = \Doctrine\ORM\Tools\Setup ::createAnnotationMetadataConfiguration(array(__DIR__), TRUE);
             $dbParams = array(
                 'driver' => 'pdo_mysql',

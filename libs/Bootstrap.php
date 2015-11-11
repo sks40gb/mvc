@@ -4,8 +4,8 @@ class Bootstrap {
 
     private $_url = null;
     private $_controller = null;
-    private $_controllerPath = 'controllers/'; // Always include trailing slash
-    private $_modelPath = 'models/'; // Always include trailing slash
+    private $_controllerPath = CONTROLLER_PATH; 
+    private $_modelPath = MODEL_PATH; 
     private $_errorFile = 'error.php';
     private $_defaultFile = 'index.php';
 

@@ -8,6 +8,7 @@ use Doctrine\ORM\Tools\Setup;
  *
  * @author sunsingh
  */
+
 class Entity {
 
     // obtaining the entity manager
@@ -26,8 +27,7 @@ class Entity {
     }
 
     public function getManager() {
-        if (!isset($this->entityManager)) {
-            echo "  getManager  ";
+        if (!isset($this->entityManager)) {            
             $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__), TRUE);
             $dbParams = array(
                 'driver' => 'pdo_mysql',

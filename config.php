@@ -17,3 +17,9 @@ define('HASH_GENERAL_KEY', 'MixitUp200');
 
 // This is for database passwords only
 define('HASH_PASSWORD_KEY', 'catsFLYhigh2000miles');
+
+
+//DEVELOPEMENT
+#======================================================================================================================
+define("CONTROLLER_PATH",'src/controllers/'); // Always include trailing slash
+define("MODEL_PATH",'src/models/'); // Always include trailing slash

@@ -3,7 +3,7 @@
 require_once 'config.php';
 require_once 'util/Auth.php';
 require_once 'src/db/bootstrap.php';
-require_once 'src/db/entity/Entity.php';
+require_once 'src/db/entity/BaseEntity.php';
 require_once 'src/db/entity/User.php';
 require_once 'libs/Bootstrap.php';
 require_once 'libs/Controller.php';

@@ -5,7 +5,7 @@ namespace SKS\DB\Entity;
 /**
  * @Entity @Table(name="user")
  * */
-class User extends Entity {
+class User extends BaseEntity {
     
     /** @Id @Column(type="integer") @GeneratedValue * */
     protected $id;

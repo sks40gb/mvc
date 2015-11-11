@@ -6,7 +6,7 @@
  */
 namespace SKS\DB\Entity;
 
-class Entity {
+class BaseEntity {
 
     // obtaining the entity manager
     protected $entityManager;
@@ -22,11 +22,14 @@ class Entity {
     public function flush() {     
         $this->getManager()->flush();
     }
-  /*  
-    public function findById(){
-        return 
+ 
+    public function findAll(){
+       $table = get_class($this);      
+       $query = $this->getManager()->createQuery("SELECT t FROM $table t");
+       $entities = $query->getResult();      
+       return $entities;
     }
-*/
+
     public function getManager() {
         if (!isset($this->entityManager)) {            
             $config = \Doctrine\ORM\Tools\Setup ::createAnnotationMetadataConfiguration(array(__DIR__), TRUE);

@@ -14,15 +14,15 @@
 <hr />
 
 <table>
-    <?php
-    foreach ($this->userList as $key => $value) {
+    <?php    
+    foreach ($this->userList as $user) {
         echo '<tr>';
-        echo '<td>' . $value['userid'] . '</td>';
-        echo '<td>' . $value['login'] . '</td>';
-        echo '<td>' . $value['role'] . '</td>';
+        echo '<td>' . $user->getId() . '</td>';
+        echo '<td>' . $user->getLogin(). '</td>';
+        echo '<td>' . $user->getRole() . '</td>';
         echo '<td>
-                <a href="' . URL . 'user/edit/' . $value['userid'] . '">Edit</a> 
-                <a href="' . URL . 'user/delete/' . $value['userid'] . '">Delete</a></td>';
+                <a href="' . URL . 'user/edit/' . $user->getId() . '">Edit</a> 
+                <a href="' . URL . 'user/delete/' . $user->getId() . '">Delete</a></td>';
         echo '</tr>';
     }
     ?>

@@ -8,7 +8,9 @@ class User_Model extends Model {
     }
 
     public function userList() {
-        return $this->db->select('SELECT userid, login, role FROM user');
+        $user = new User();       
+        $users =  $user->findAll();      
+        return $users;
     }
 
     public function userSingleList($userid) {

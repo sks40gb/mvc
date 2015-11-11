@@ -16,7 +16,7 @@ class BaseEntity {
     public function __construct() {
         
     }
-
+    
     public function persist($flush = FALSE) {
         $entity = $this->getManager()->persist($this);
         if ($flush) {
@@ -44,26 +44,72 @@ class BaseEntity {
     public function remove() {
         return $this->getManager()->remove($this);
     }
-    
+
     public function merge() {
         return $this->getManager()->merge($this);
     }
 
     public function findById($id = NULL) {
-        if ($id == NULL) {
-            $id = $this . getId();
-        }
-        $table = get_class($this);
-        $query = $this->getManager()->createQuery("SELECT t FROM $table t WHERE t.id = $id");
-        $entities = $query->getResult();
-        return $entities[0];
+       return $this->getRow(array("id"=>$id));
     }
 
     public function findAll() {
-        $table = get_class($this);
-        $query = $this->getManager()->createQuery("SELECT t FROM $table t");
+        return $this->find();
+    }
+
+    /**
+     * Get array of entities by passing the conditional fields.
+     * @param type $field_value_array
+     * @return type
+     */
+    public function find($field_value_array=false) {
+        $query = $this->buildDQL($field_value_array);
         $entities = $query->getResult();
-        return $entities;
+         return $entities;
+    }
+
+    /**
+     * Get single record
+     * @param type $field_value_array
+     * @return type
+     */
+    public function getRow($field_value_array) {
+        $query = $this->buildDQL($field_value_array);
+        $entities = $query->getResult();
+        if (count($entities) > 0) {
+            return $entities[0];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Build DQL - select the table on the basis of Entity Class name and Conditional section is being passed through
+     * Array as an argument
+     * @param type $field_value_array = Field and Value array
+     * @return DQL
+     */
+    private function buildDQL($field_value_array = false) {
+        $table = get_class($this);
+        $sql = "SELECT t FROM $table t";
+        if ($field_value_array) {
+            $sql.=" WHERE ";
+            //add where condition and remove the 'AND from the query';
+            foreach ($field_value_array as $field => $value) {
+                $sql .= " t.$field = :$field AND ";
+            }
+            $sql = rtrim($sql, "AND ");
+            // get the query
+            $query = $this->getManager()->createQuery($sql);
+             #echo "QUERY : $sql";
+            //bind the value
+            foreach ($field_value_array as $field => $value) {
+                $query->setParameter($field, $value);
+            }
+            return $query;
+        }else{
+            return $query = $this->getManager()->createQuery($sql);
+        }
     }
 
     public function getManager() {

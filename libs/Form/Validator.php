@@ -1,6 +1,6 @@
 <?php
 
-class Val {
+class Validator {
 
     public function __construct() {
         

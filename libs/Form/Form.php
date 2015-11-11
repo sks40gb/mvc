@@ -10,7 +10,7 @@
  *  - Write to Database
 
  */
-require 'Form/Validator.php';
+require 'Validator.php';
 
 class Form {
 
@@ -20,8 +20,8 @@ class Form {
     /** @var array $_postData Stores the Posted Data */
     private $_postData = array();
 
-    /** @var object $_val The validator object */
-    private $_val = array();
+    /** @var object $_validator The validator object */
+    private $_validator = array();
 
     /** @var array $_error Holds the current forms errors */
     private $_error = array();
@@ -31,7 +31,7 @@ class Form {
      * 
      */
     public function __construct() {
-        $this->_val = new Val();
+        $this->_validator = new Validator();
     }
 
     /**
@@ -67,17 +67,17 @@ class Form {
     }
 
     /**
-     * val - This is to validate
+     * This is to add the Validator Rules 
      * 
      * @param string $typeOfValidator A method from the Form/Val class
      * @param string $arg A property to validate against
      */
-    public function val($typeOfValidator, $arg = null) {
+    public function addRule($typeOfValidator, $arg = null) {
         if ($arg == null) {
 
-            $error = $this->_val->{$typeOfValidator}($this->_postData[$this->_currentItem]);
+            $error = $this->_validator->{$typeOfValidator}($this->_postData[$this->_currentItem]);
         } else {
-            $error = $this->_val->{$typeOfValidator}($this->_postData[$this->_currentItem], $arg);
+            $error = $this->_validator->{$typeOfValidator}($this->_postData[$this->_currentItem], $arg);
         }
 
         if ($error) {
@@ -106,4 +106,20 @@ class Form {
         }
     }
 
+    /**
+     * Return the array of Errors if form doesn't pass the rules.
+     * @return string|boolean
+     */
+    public function validate() {
+        if (empty($this->_error)) {
+            return true;
+        } else {
+            $errors = array();
+            foreach ($this->_error as $key => $value) {
+                $errors[] = $key . ' => ' . $value . "\n";
+            }
+            return $errors;
+        }
+        return true;
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 require '../config.php';
-require '../libs/Form.php';
+require '../libs/form/Form.php';
 require '../libs/Database.php';
 
 if (isset($_REQUEST['run'])) {
@@ -10,11 +10,11 @@ if (isset($_REQUEST['run'])) {
         $form = new Form();
 
         $form   ->post('name')
-                ->val('minlength', 2)
+                ->addRule('minlength', 2)
 
                 ->post('age')
-                ->val('minlength', 2)
-                ->val('digit')
+                ->addRule('minlength', 2)
+                ->addRule('digit')
 
                 ->post('gender');
         

@@ -33,7 +33,7 @@ class NoteModel extends Model {
     }
 
     public function delete($id) {
-        $this->db->delete('note', "`noteid` = {$data['noteid']} AND userid = '{$_SESSION['userid']}'");
+        $this->db->delete('note', "`noteid` = $id  AND userid = '{$_SESSION['userid']}'");
     }
 
 }

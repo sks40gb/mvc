@@ -1,15 +1,12 @@
 <?php
-
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
-
 /**
  * Description of Model
  *
  * @author sunsingh
  */
+namespace SKS\DB\Entity;
 
-class BASEEntity {
+class Entity {
 
     // obtaining the entity manager
     protected $entityManager;
@@ -25,17 +22,21 @@ class BASEEntity {
     public function flush() {     
         $this->getManager()->flush();
     }
-
+  /*  
+    public function findById(){
+        return 
+    }
+*/
     public function getManager() {
         if (!isset($this->entityManager)) {            
-            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__), TRUE);
+            $config = \Doctrine\ORM\Tools\Setup ::createAnnotationMetadataConfiguration(array(__DIR__), TRUE);
             $dbParams = array(
                 'driver' => 'pdo_mysql',
                 'user' => 'root',
                 'password' => 'root',
                 'dbname' => 'foo',
             );
-            $this->entityManager = EntityManager::create($dbParams, $config);
+            $this->entityManager = \Doctrine\ORM\EntityManager::create($dbParams, $config);
         }
         //print_r($entityManager);
         return $this->entityManager;

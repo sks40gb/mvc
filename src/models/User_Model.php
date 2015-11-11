@@ -1,5 +1,6 @@
 <?php
 
+use SKS\DB\Entity\User;
 class User_Model extends Model {
 
     public function __construct() {
@@ -21,12 +22,12 @@ class User_Model extends Model {
             'role' => $data['role']
         ));*/       
         $password = Hash::create('sha256', $data['password'], HASH_PASSWORD_KEY);
-        $user = new UserEntity();       
+        $user = new User();       
         $user->setLogin($data['login']);       
         $user->setPassword($password);      
         $user->setRole($data['role']);     
         $user->persist();
-        $user->flush();      
+        $user->flush();    
     }
     
 

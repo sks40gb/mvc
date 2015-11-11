@@ -1,9 +1,11 @@
 <?php
-require_once 'BASEEntity.php';
+
+namespace SKS\DB\Entity;
+
 /**
  * @Entity @Table(name="user")
  * */
-class UserEntity extends BASEEntity {
+class User extends Entity {
     
     /** @Id @Column(type="integer") @GeneratedValue * */
     protected $id;

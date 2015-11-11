@@ -26,7 +26,7 @@ class View {
      */
     private function setJSFiles($name) {
         $js_directory =  $this->getCurrentDirectory($name)."/js";
-        require("util/FileUtil.php");
+        require_once("util/FileUtil.php");
         $files = FileUtil::getFiles($js_directory);
         $js_files = array();
         foreach($files as $file){

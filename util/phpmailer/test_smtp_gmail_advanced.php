@@ -19,8 +19,8 @@ try {
   $mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
   $mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
   $mail->Port       = 465;                   // set the SMTP port for the GMAIL server
-  $mail->Username   = "sks.256@gmail.com";  // GMAIL username
-  $mail->Password   = "qtzavsvihjhsrqov";            // GMAIL password
+  $mail->Username   = "teams9546@gmail.com";  // GMAIL username
+  $mail->Password   = "%gsdjh*(jsdsl";            // GMAIL password
   $mail->AddAddress('sks.256@gmail.com', 'John Doe');
   $mail->SetFrom('name@yourdomain.com', 'First Last');
   $mail->AddReplyTo('name@yourdomain.com', 'First Last');
